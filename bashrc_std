@@ -9,7 +9,9 @@ _misc(){
 }
 
 _docker(){
-    alias dc="/usr/local/bin/docker-compose"
+    if type docker-compose >/dev/null 2>&1; then
+        alias dc="docker-compose"
+    fi
 }
 
 _aws(){
@@ -18,31 +20,35 @@ _aws(){
     export AWS_SECRET_ACCESS_KEY=$( grep aws_secret_access_key ~/.aws/credentials  | sed -e "s/aws_secret_access_key = //" )
     export AWS_REGION_CODE=$( grep region ~/.aws/config  | sed -e "s/region = //" )
 
-    complete -C  $( type -p aws_completer ) aws
-    . <( eksctl completion  bash  )
+    if type eksctl >/dev/null 2>&1; then
+        complete -C  $( type -p aws_completer ) aws
+        . <( eksctl completion  bash  )
 
-    alias ec="eksctl"
-     . <( eksctl completion  bash | sed -e 's/eksctl/ec/g' )
+        alias ec="eksctl"
+         . <( eksctl completion  bash | sed -e 's/eksctl/ec/g' )
+    fi
 }
-
 
 _kubernetes(){
 
-    . <( kubectl completion bash )
+    if type kubectl >/dev/null 2>&1; then
+        . <( kubectl completion bash )
 
-    alias kc="kubectl"
-    complete -o default -F __start_kubectl kc
-    alias kx="kubectx"
-    alias kn="kubens"
+        alias kc="kubectl"
+        complete -o default -F __start_kubectl kc
 
-    if [ -f /usr/local/bin/kube-ps1.sh ] ; then
-        . "/usr/local/bin/kube-ps1.sh"
-        PS1='$(kube_ps1)\n'$PS1
-        kubeoff
+        alias kx="kubectx"
+        alias kn="kubens"
+    fi
+
+    if type kind >/dev/null 2>&1; then
+        . <(kind completion bash )
     fi
 }
 _openshift(){
-    . <(oc completion bash)
+    if type oc >/dev/null 2>&1; then
+        . <(oc completion bash)
+    fi
 }
 _azure(){
     export PATH=$PATH:~/bin

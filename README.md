@@ -6,7 +6,7 @@ if filereadable(expand('~/.vimrc_std'))
   source ~/.vimrc_std
 endif
 EOF
-curl https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/vimrc_std -sLO ~/.vimrc_std
+curl https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/vimrc_std -sLo ~/.vimrc_std
 ```
 - 自分固有・環境固有の設定は`~/.vimrc` に書きます
 
@@ -15,7 +15,7 @@ curl https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/vimrc_st
 工事中。使わないで。
 ```bash
 cd ~
-curl https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bashrc_std -sLO ~/.bashrc_std
+curl https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bashrc_std -sLo ~/.bashrc_std
 cat >> ~/.bashrc <<EOF
 if [ -f ~/.bashrc_std ] ; then
     . ~/.bashrc_std

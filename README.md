@@ -13,6 +13,13 @@ cat >> ~/.bashrc <<EOF
 if [ -f ~/.bashrc_personal ] ; then
     . ~/.bashrc_personal
 
+    # 使いたい関数のコメントアウトを開放してください。
+    # _misc
+    #_docker
+    #_aws
+    #_kubernetes
+    #_openshift
+    #_azure
 fi
 EOF
 ```

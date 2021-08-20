@@ -1,0 +1,51 @@
+#!/bin/bash
+
+export EDITOR=vi
+
+_misc(){
+    alias grpe="grep"
+    alias gpre="grep"
+    alias ap="ansible-playbook"
+}
+
+_docker(){
+    alias dc="/usr/local/bin/docker-compose"
+}
+
+_aws(){
+    export PATH="${PATH}:${HOME}/.krew/bin"
+    export AWS_ACCESS_KEY_ID=$( grep aws_access_key_id ~/.aws/credentials  | sed -e "s/aws_access_key_id = //" )
+    export AWS_SECRET_ACCESS_KEY=$( grep aws_secret_access_key ~/.aws/credentials  | sed -e "s/aws_secret_access_key = //" )
+    export AWS_REGION_CODE=$( grep region ~/.aws/config  | sed -e "s/region = //" )
+
+    complete -C  $( type -p aws_completer ) aws
+    . <( eksctl completion  bash  )
+
+    alias ec="eksctl"
+     . <( eksctl completion  bash | sed -e 's/eksctl/ec/g' )
+}
+
+
+_kubernetes(){
+
+    . <( kubectl completion bash )
+
+    alias kc="kubectl"
+    complete -o default -F __start_kubectl kc
+    alias kx="kubectx"
+    alias kn="kubens"
+
+    if [ -f /usr/local/bin/kube-ps1.sh ] ; then
+        . "/usr/local/bin/kube-ps1.sh"
+        PS1='$(kube_ps1)\n'$PS1
+        kubeoff
+    fi
+}
+_openshift(){
+    . <(oc completion bash)
+}
+_azure(){
+    export PATH=$PATH:~/bin
+    source ~/lib/azure-cli/az.completion
+}
+

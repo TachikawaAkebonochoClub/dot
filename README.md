@@ -35,4 +35,13 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
     exec bash
     ```
 
+## Powerline
+
+
+```bash
+DST=~/.local/bin
+mkdir $DST -p
+curl -Lo $DST/powerline-go  https://github.com/justjanne/powerline-go/releases/latest/download/powerline-go-linux-amd64
+chmod +x  $DST/powerline-go
+```
 

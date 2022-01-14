@@ -13,6 +13,7 @@ if [ -f ~/.bashrc_std ] ; then
     #_kubernetes
     #_openshift
     #_azure
+    #_powerline
 fi
 #BASHUP_END}}}
 EOF

@@ -40,6 +40,13 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
 ### Powerline
 - [justjanne/powerline-go: A beautiful and useful low-latency prompt for your shell, written in go](https://github.com/justjanne/powerline-go)
 
+    ```bash
+    DST=~/.local/bin
+    mkdir $DST -p
+    curl -Lo $DST/powerline-go  https://github.com/justjanne/powerline-go/releases/latest/download/powerline-go-linux-amd64
+    chmod +x  $DST/powerline-go
+    ```
+
 ## Container
 ### docker
 - docker engine => [Install Docker Engine | Docker Documentation](https://docs.docker.com/engine/install/)
@@ -68,4 +75,3 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
 ### AWS
 ### Azure
 ### Google Cloud 
-

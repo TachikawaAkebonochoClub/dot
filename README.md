@@ -28,7 +28,17 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
 ```
 
 - 自分固有・環境固有の設定は`~/.bashrc` に直接書きます。
-- .bashrc を編集し使いたい関数のコメントアウトを開放してください。
+- .bashrc を編集し、使いたい関数のコメントアウトを開放してください。
+    ```
+    # 使いたい関数のコメントアウトを開放してください。
+    # _misc
+    #_docker
+    #_aws
+    #_kubernetes
+    #_openshift
+    #_azure
+    #_powerline
+    ```
 - 設定は次回ログイン以降から有効
 ― せっかちな人は
     ```bash

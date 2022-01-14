@@ -67,13 +67,13 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
     ```
     $ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     $ chmod +x kubectl
-# move to your bin-dir.
+    # move to your bin-dir.
     ```
 
 - kubecolor => [Colorize kubectl output by kubecolor | by Hidetatsu YAGINUMA | Medium](https://dty1er.medium.com/colorize-kubectl-output-by-kubecolor-2c222af3163a)
     ```console
     $ curl -sL https://github.com/dty1er/kubecolor/releases/download/v0.0.20/kubecolor_0.0.20_Linux_x86_64.tar.gz | tar xzvf - kubecolor
-# move to => $ mv kubecolor  ~/.local/bin/.
+    # move to => $ mv kubecolor  ~/.local/bin/.
     ```
 - kubectx & kubens 
     - [ahmetb/kubectx: Faster way to switch between clusters and namespaces in kubectl > kubectx ](https://github.com/ahmetb/kubectx#installation)

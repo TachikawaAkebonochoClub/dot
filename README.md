@@ -35,4 +35,37 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
     exec bash
     ```
 
+# Other CLI
+## Terminal
+### Powerline
+- [justjanne/powerline-go: A beautiful and useful low-latency prompt for your shell, written in go](https://github.com/justjanne/powerline-go)
+
+## Container
+### docker
+- docker engine => [Install Docker Engine | Docker Documentation](https://docs.docker.com/engine/install/)
+- docker compose => [Install Docker Compose | Docker Documentation](https://docs.docker.com/compose/install/)
+
+### kubernetes
+- kubectl => [Install and Set Up kubectl on Linux | Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+    ```
+    $ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    $ chmod +x kubectl
+# move to your bin-dir.
+    ```
+
+- kubecolor => [Colorize kubectl output by kubecolor | by Hidetatsu YAGINUMA | Medium](https://dty1er.medium.com/colorize-kubectl-output-by-kubecolor-2c222af3163a)
+    ```console
+    $ curl -sL https://github.com/dty1er/kubecolor/releases/download/v0.0.20/kubecolor_0.0.20_Linux_x86_64.tar.gz | tar xzvf - kubecolor
+# move to => $ mv kubecolor  ~/.local/bin/.
+    ```
+- kubectx & kubens 
+    - [ahmetb/kubectx: Faster way to switch between clusters and namespaces in kubectl > kubectx ](https://github.com/ahmetb/kubectx#installation)
+    - Go Binary => [Releases · ahmetb/kubectx](https://github.com/ahmetb/kubectx/releases)
+
+
+    
+## Cloud
+### AWS
+### Azure
+### Google Cloud 
 

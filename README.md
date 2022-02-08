@@ -51,7 +51,7 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
 - [justjanne/powerline-go: A beautiful and useful low-latency prompt for your shell, written in go](https://github.com/justjanne/powerline-go)
 
     ```bash
-    DST=~/.local/bin
+    LOCAL_BIN_DIR=~/.local/bin
     mkdir $DST -p
     curl -Lo $DST/powerline-go  https://github.com/justjanne/powerline-go/releases/latest/download/powerline-go-linux-amd64
     chmod +x  $DST/powerline-go
@@ -65,21 +65,33 @@ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bash
 ### kubernetes
 - kubectl => [Install and Set Up kubectl on Linux | Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
     ```
-    $ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-    $ chmod +x kubectl
-    # move to your bin-dir.
+    LOCAL_BIN_DIR=~/.local/bin
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    chmod +x kubectl
+    # move to => $ mv kubectl  $LOCAL_BIN_DIR/.
+
     ```
 
 - kubecolor => [Colorize kubectl output by kubecolor | by Hidetatsu YAGINUMA | Medium](https://dty1er.medium.com/colorize-kubectl-output-by-kubecolor-2c222af3163a)
     ```console
-    $ curl -sL https://github.com/dty1er/kubecolor/releases/download/v0.0.20/kubecolor_0.0.20_Linux_x86_64.tar.gz | tar xzvf - kubecolor
-    # move to => $ mv kubecolor  ~/.local/bin/.
+    LOCAL_BIN_DIR=~/.local/bin
+    curl -sL https://github.com/dty1er/kubecolor/releases/download/v0.0.20/kubecolor_0.0.20_Linux_x86_64.tar.gz | tar xzvf - kubecolor
+    mv kubecolor  $LOCAL_BIN_DIR/.
+
     ```
 - kubectx & kubens 
     - [ahmetb/kubectx: Faster way to switch between clusters and namespaces in kubectl > kubectx ](https://github.com/ahmetb/kubectx#installation)
     - Go Binary => [Releases · ahmetb/kubectx](https://github.com/ahmetb/kubectx/releases)
 
 
+- kind => [kind – Quick Start](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries)
+    ```console
+    LOCAL_BIN_DIR=~/.local/bin
+    curl -sLo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+    chmod +x ./kind
+    mv ./kind $LOCAL_BIN_DIR/kind
+
+    ```
     
 ## Cloud
 ### AWS

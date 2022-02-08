@@ -32,10 +32,15 @@ _aws(){
 _kubernetes(){
 
     if type kubectl >/dev/null 2>&1; then
+
         . <( kubectl completion bash )
 
-        alias kc="kubectl"
-        complete -o default -F __start_kubectl kc
+        if type kubecolor >/dev/null 2>&1; then
+            alias k="kubecolor"
+        else
+            alias k="kubectl"
+        fi
+        complete -o default -F __start_kubectl k
 
         alias kx="kubectx"
         alias kn="kubens"

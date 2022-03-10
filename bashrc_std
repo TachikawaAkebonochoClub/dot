@@ -2,6 +2,19 @@
 
 export EDITOR=vi
 
+pathmunge () {
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+    esac
+}
+
 _misc(){
     alias grpe="grep"
     alias gpre="grep"
@@ -32,22 +45,20 @@ _aws(){
 _kubernetes(){
 
     if type kubectl >/dev/null 2>&1; then
-
         . <( kubectl completion bash )
 
-        if type kubecolor >/dev/null 2>&1; then
-            alias k="kubecolor"
-        else
-            alias k="kubectl"
-        fi
+        alias k="kubectl"
         complete -o default -F __start_kubectl k
 
-        alias kx="kubectx"
-        alias kn="kubens"
+        alias kns="kubectl ns"
+        alias kctx="kubectl ctx"
     fi
 
     if type kind >/dev/null 2>&1; then
         . <(kind completion bash )
+    fi
+    if type kustomize >/dev/null 2>&1; then
+        . <(kustomize completion bash )
     fi
 }
 _openshift(){
@@ -77,3 +88,21 @@ _powerline() {
     fi
     PL_OPTS="-modules venv,user,host,cwd,git,root -theme gruvbox"
 }
+
+if [ -d /usr/local/bin ] ; then
+    pathmunge /usr/local/bin after
+fi
+if [ -d ~/bin ] ; then
+    pathmunge ~/bin after
+fi
+
+if [ -d ~/.local/bin ] ; then
+    pathmunge ~/.local/bin after
+fi
+
+if [ -d ~/.krew/bin ] ; then
+    pathmunge ~/.krew/bin after
+fi
+export PATH
+
+

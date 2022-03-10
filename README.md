@@ -6,6 +6,23 @@
 - 普遍的な設定とかはここを更新してください
 
 # dotファイルたち
+## All-In-One 
+```
+usage: ./all-in-one.sh funcs...
+
+    funcs : 
+        bashrc      -- update bashrc.(include .bashrc_std)
+        vim         -- update vimrc.(include .vimrc_std)
+        kubernetes  -- install k8s CLIs and alias, completions. (kubectl, kubecolor, krew)
+        docker      -- CommingSooooon.
+        azure       -- CommingSooooon.
+        aws         -- CommingSooooon.
+```
+```
+ARGS="bashrc vim kubernetes" # <-- このみで列記
+curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/all-in-one.sh | bash -
+```
+
 ## Vim
 ```bash
 cd ~

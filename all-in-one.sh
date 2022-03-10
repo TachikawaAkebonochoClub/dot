@@ -6,7 +6,12 @@ isExist(){
     type $1 &> /dev/null 
 }
 
+standigBy(){
+    echo "=============================================================="
+    echo "Setup $*"
+}
 _kubernetes(){
+    standigBy kubernetes
 
     if ( ! isExist kubectl ) ; then
         curl -sL "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" \
@@ -30,12 +35,8 @@ _kubernetes(){
     fi
 }
 
-
-
-
-
-
 _vim(){
+    standigBy vim
     cd ~
 
      sed -i -e '/{{{VIM_START/,/VIM_END}}}/d' ~/.vimrc
@@ -50,10 +51,13 @@ EOF
 }
 
 _bashrc(){
+    standigBy bashrc
 	cd ~
 	curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/bashup.sh | bash -
 }
 _powerline(){
+    standigBy powerline
+
     if ( ! isExist powerline-go )  ; then
         mkdir $DST -p
         curl -Lo $DST/powerline-go  https://github.com/justjanne/powerline-go/releases/latest/download/powerline-go-linux-amd64
@@ -86,12 +90,13 @@ usage: $0 funcs...
 EOF
 }
 
-if [ $# -lt 1 ] ; then
+ARGS="${ARGS:=$@}"
+if [[ -z $ARGS ]] ; then
     usage
     exit 1
 fi
 
-for a in $*
+for a in $ARGS
 do
     case $a in 
     docker) _docker ;;

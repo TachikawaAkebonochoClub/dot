@@ -59,9 +59,10 @@ _powerline(){
     standigBy powerline
 
     if ( ! isExist powerline-go )  ; then
-        mkdir $DST -p
-        curl -Lo $DST/powerline-go  https://github.com/justjanne/powerline-go/releases/latest/download/powerline-go-linux-amd64
-        chmod +x  $DST/powerline-go
+        mkdir $LOCAL_BIN -p &> /dev/null
+
+        curl -sLo $LOCAL_BIN/powerline-go  https://github.com/justjanne/powerline-go/releases/latest/download/powerline-go-linux-amd64
+        chmod +x  $LOCAL_BIN/powerline-go
     fi
 }   
 _docker(){
@@ -83,6 +84,7 @@ usage: $0 funcs...
         bashrc      -- update bashrc.(include .bashrc_std)
         vim         -- update vimrc.(include .vimrc_std)
         kubernetes  -- install k8s CLIs and alias, completions. (kubectl, kubecolor, krew)
+        powerline   -- install and setup powerline-go.
         docker      -- CommingSooooon.
         azure       -- CommingSooooon.
         aws         -- CommingSooooon.
@@ -105,6 +107,7 @@ do
     aws) _aws;;
     vim) _vim;;
     bashrc) _bashrc;;
+    powerline) _powerline;;
     *) usage;;
     esac
 

@@ -19,8 +19,10 @@ usage: ./all-in-one.sh funcs...
         aws         -- CommingSooooon.
 ```
 ```
-ARGS="bashrc vim kubernetes" # <-- このみで列記
-curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/all-in-one.sh | bash -
+# このみで列記
+( ARGS="bashrc vim kubernetes"  ;
+ curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/all-in-one.sh | bash - )
+
 ```
 
 ## Vim

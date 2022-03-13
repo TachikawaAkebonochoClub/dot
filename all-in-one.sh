@@ -38,8 +38,8 @@ _kubernetes(){
 _vim(){
     standigBy vim
     cd ~
-
-     sed -i -e '/{{{VIM_START/,/VIM_END}}}/d' ~/.vimrc
+    [ -f  ~/.vimrc ] && touch ~/.vimrc
+    sed -i -e '/{{{VIM_START/,/VIM_END}}}/d' ~/.vimrc
     cat >> ~/.vimrc <<EOF
 "{{{VIM_START
 if filereadable(expand('~/.vimrc_std'))
@@ -97,7 +97,7 @@ if [[ -z $ARGS ]] ; then
     usage
     exit 1
 fi
-
+[[ -d $LOCAL_BIN ]]  || mkdir $LOCAL_BIN &> /dev/null
 for a in $ARGS
 do
     case $a in 

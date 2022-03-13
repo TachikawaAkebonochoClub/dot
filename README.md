@@ -20,8 +20,8 @@ usage: ./all-in-one.sh funcs...
 ```
 ```
 # このみで列記
-( ARGS="bashrc vim kubernetes"  ;
- curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/all-in-one.sh | bash - )
+ARGS="bashrc vim kubernetes"  \
+   bash - <( curl -sL https://raw.githubusercontent.com/TachikawaAkebonochoClub/dot/main/all-in-one.sh  )
 
 ```
 

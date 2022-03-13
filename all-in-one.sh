@@ -113,3 +113,5 @@ do
 
 done
 
+exec bash
+

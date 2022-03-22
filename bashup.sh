@@ -6,7 +6,13 @@ cat >> ~/.bashrc <<EOF
 if [ -f ~/.bashrc_std ] ; then
     . ~/.bashrc_std
 
-    # 使いたい関数のコメントアウトを開放してください。
+    echo >&2 "=== ご連絡 ==="
+    echo >&2 "~/.bashrc は $(date) にBASHUP SCRIPT に更新されました. "
+    echo >&2 "~/.bashrc の BASHUP_START/END の中を構成してください。"
+    echo >&2 "このメッセージは削除してしまってかまいません"
+    echo >&2 ""
+
+    # 使いたいモジュールのコメントアウトを開放してください。
     # _misc
     #_docker
     #_aws

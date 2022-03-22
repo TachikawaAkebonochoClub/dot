@@ -33,6 +33,14 @@ _kubernetes(){
           ./"${KREW}" install krew
         )
     fi
+    if ( ! isExist kustomize ) ; then
+        ( 
+            cd $LOCAL_BIN ; 
+            curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+        )
+
+    fi
+
 }
 
 _vim(){

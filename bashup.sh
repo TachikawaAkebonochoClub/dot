@@ -3,16 +3,13 @@
 sed -i -e '/{{{BASHUP_START/,/BASHUP_END}}}/d' ~/.bashrc
 cat >> ~/.bashrc <<EOF
 #{{{BASHUP_START
+echo >&2 "=== ご連絡 ===　（このメッセージは削除してしまってかまいません）"
+echo >&2 "この ~/.bashrc は $(date) にBASHUP SCRIPT に更新されました.  ~/.bashrc の BASHUP_START/END の中を構成してください。"
+echo >&2 ""
+
 if [ -f ~/.bashrc_std ] ; then
     . ~/.bashrc_std
-
-    echo >&2 "=== ご連絡 ==="
-    echo >&2 "~/.bashrc は $(date) にBASHUP SCRIPT に更新されました. "
-    echo >&2 "~/.bashrc の BASHUP_START/END の中を構成してください。"
-    echo >&2 "このメッセージは削除してしまってかまいません"
-    echo >&2 ""
-
-    # 使いたいモジュールのコメントアウトを開放してください。
+    # 使いたいモジュールのコメントアウトを開放してください。 このブロックを BASHUP のカッコの外に移動すれば、上書きされなくなります。
     # _misc
     #_docker
     #_aws

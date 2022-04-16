@@ -2,6 +2,9 @@
 
 export EDITOR=vi
 
+isExist(){ 
+    type $1 &> /dev/null 
+}
 pathmunge () {
     case ":${PATH}:" in
         *:"$1":*)
@@ -22,7 +25,7 @@ _misc(){
 }
 
 _docker(){
-    if type docker-compose >/dev/null 2>&1; then
+    if ( isExist docker-compose ) ; then
         alias dc="docker-compose"
     fi
 }
@@ -33,7 +36,7 @@ _aws(){
     export AWS_SECRET_ACCESS_KEY=$( grep aws_secret_access_key ~/.aws/credentials  | sed -e "s/aws_secret_access_key = //" )
     export AWS_REGION_CODE=$( grep region ~/.aws/config  | sed -e "s/region = //" )
 
-    if type eksctl >/dev/null 2>&1; then
+    if ( isExist eksctl ) ; then
         complete -C  $( type -p aws_completer ) aws
         . <( eksctl completion  bash  )
 
@@ -44,7 +47,7 @@ _aws(){
 
 _kubernetes(){
 
-    if type kubectl >/dev/null 2>&1; then
+    if ( isExist kubectl ) ; then
         . <( kubectl completion bash )
 
         alias k="kubectl"
@@ -52,17 +55,22 @@ _kubernetes(){
 
         alias kns="kubectl ns"
         alias kctx="kubectl ctx"
+
+        if ( isExist kubecolor ) ; then
+            alias k=kubecolor
+            complete -o default -F __start_kubectl kubecolor
+        fi
     fi
 
-    if type kind >/dev/null 2>&1; then
+    if ( isExist kind ) ; then
         . <(kind completion bash )
     fi
-    if type kustomize >/dev/null 2>&1; then
+    if ( isExist kustomize ) ; then
         . <(kustomize completion bash )
     fi
 }
 _openshift(){
-    if type oc >/dev/null 2>&1; then
+    if ( isExist oc ) ; then
         . <(oc completion bash)
     fi
 }
@@ -83,10 +91,12 @@ _powerline() {
         set "?"
     }
 
-    if [ "$TERM" != "linux" ] && [ -f ~/.local/bin/powerline-go ]; then
-        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    if ( isExist powerline-go ) ; then
+        if [ "$TERM" != "linux" ] ; then
+            PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+            PL_OPTS="-modules venv,user,host,cwd,git,root -theme gruvbox"
+        fi
     fi
-    PL_OPTS="-modules venv,user,host,cwd,git,root -theme gruvbox"
 }
 
 if [ -d /usr/local/bin ] ; then

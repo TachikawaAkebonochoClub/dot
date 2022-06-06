@@ -12,7 +12,8 @@ standigBy(){
 }
 _kubernetes(){
     standigBy kubernetes
-　　mkdir $LOCAL_BIN -p &> /dev/null
+    
+　　mkdir ${LOCAL_BIN} -p &> /dev/null
     if ( ! isExist kubectl ) ; then
         curl -sL "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" \
             -o ${LOCAL_BIN}/kubectl
@@ -105,6 +106,8 @@ if [[ -z $ARGS ]] ; then
     usage
     exit 1
 fi
+echo "LOCAL_BIN=${LOCAL_BIN}" 
+
 [[ -d $LOCAL_BIN ]]  || mkdir $LOCAL_BIN &> /dev/null
 for a in $ARGS
 do

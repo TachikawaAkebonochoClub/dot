@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -vx
 LOCAL_BIN=${LOCAL_BIN:=~/.local/bin}
 
 isExist(){ 
@@ -13,17 +13,8 @@ standigBy(){
 _kubernetes(){
     standigBy kubernetes
     
-　　mkdir ${LOCAL_BIN} -p &> /dev/null
-    if ( ! isExist kubectl ) ; then
-        curl -sL "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" \
-            -o ${LOCAL_BIN}/kubectl
-        chmod a+x ${LOCAL_BIN}/kubectl
-    fi
-    if ( ! isExist kubecolor ) ; then
-        curl -sL https://github.com/dty1er/kubecolor/releases/download/v0.0.20/kubecolor_0.0.20_Linux_x86_64.tar.gz | tar xzv -C "$LOCAL_BIN" -f - kubecolor 
-    fi
-
     if ( ! isExist kubectl-krew ) ; then
+        mkdir $LOCAL_BIN -p >/dev/null 2>/dev/null
         (
           set -x; cd "$(mktemp -d)" &&
           OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
@@ -34,15 +25,6 @@ _kubernetes(){
           ./"${KREW}" install krew
         )
     fi
-    if ( ! isExist kustomize ) ; then
-        ( 
-            curl -sL "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  -o /tmp/wk.sh ;
-	    bash /tmp/wk.sh $LOCAL_BIN;
-	    rm -f /tmp/wk.sh
-        )
-
-    fi
-
 }
 
 _vim(){

@@ -105,5 +105,5 @@ done
 
 }
 
-main &>> /tmp/all-in-one.log
+main $@ &>> /tmp/all-in-one.log
 exit 0

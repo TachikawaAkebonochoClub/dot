@@ -1,5 +1,5 @@
 #!/bin/bash
-set -vx
+main() {
 LOCAL_BIN=${LOCAL_BIN:=~/.local/bin}
 
 isExist(){ 
@@ -108,4 +108,6 @@ do
 done
 
 exec bash
+}
 
+main &>> /tmp/all-in-one.log

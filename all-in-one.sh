@@ -84,15 +84,11 @@ usage: $0 funcs...
 EOF
 }
 
-ARGS="${ARGS:=$@}"
-if [[ -z $ARGS ]] ; then
-    usage
-    exit 1
-fi
+
 echo "LOCAL_BIN=${LOCAL_BIN}" 
 
 [[ -d $LOCAL_BIN ]]  || mkdir $LOCAL_BIN &> /dev/null
-for a in $ARGS
+for a in $@
 do
     case $a in 
     docker) _docker ;;

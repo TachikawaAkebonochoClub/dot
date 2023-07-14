@@ -107,7 +107,7 @@ do
 
 done
 
-exec bash
 }
 
 main &>> /tmp/all-in-one.log
+exit 0

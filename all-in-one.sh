@@ -118,5 +118,5 @@ main() {
 
 }
 
-main $@ &>> /tmp/all-in-one.log
+main $@ 
 exit 0

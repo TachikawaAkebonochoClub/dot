@@ -1,6 +1,4 @@
 #!/bin/bash
-main() {
-LOCAL_BIN=${LOCAL_BIN:=~/.local/bin}
 
 isExist(){ 
     type $1 &> /dev/null 
@@ -25,6 +23,19 @@ _kubernetes(){
           ./"${KREW}" install krew
         )
     fi
+    if ( ! isExist kubecolor ) ; then
+        mkdir $LOCAL_BIN -p >/dev/null 2>/dev/null
+        curl -sL https://github.com/hidetatz/kubecolor/releases/download/v0.0.25/kubecolor_0.0.25_Linux_x86_64.tar.gz | tar xzf - -C ${LOCAL_BIN} kubecolor
+    fi
+
+    . <(kubectl completion bash )
+
+    if ( isExist kubecolor ) ; then
+        alias kc=kubecolor
+    else
+        alias kc=kubectl
+    fi
+    complete -o default -F __start_kubectl kc
 }
 
 _vim(){
@@ -85,23 +96,25 @@ EOF
 }
 
 
-echo "LOCAL_BIN=${LOCAL_BIN}" 
+main() {
+    LOCAL_BIN=${LOCAL_BIN:=~/.local/bin}
+    echo "LOCAL_BIN=${LOCAL_BIN}" 
 
-[[ -d $LOCAL_BIN ]]  || mkdir $LOCAL_BIN &> /dev/null
-for a in $@
-do
-    case $a in 
-    docker) _docker ;;
-    kubernetes) _kubernetes;; 
-    azure) _azure;;
-    aws) _aws;;
-    vim) _vim;;
-    bashrc) _bashrc;;
-    powerline) _powerline;;
-    *) usage;;
-    esac
+    [[ -d $LOCAL_BIN ]]  || mkdir $LOCAL_BIN &> /dev/null
+    for a in $@
+    do
+        case $a in 
+        docker) _docker ;;
+        kubernetes) _kubernetes;; 
+        azure) _azure;;
+        aws) _aws;;
+        vim) _vim;;
+        bashrc) _bashrc;;
+        powerline) _powerline;;
+        *) usage;;
+        esac
 
-done
+    done
 
 }
 
